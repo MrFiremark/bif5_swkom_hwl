@@ -7,7 +7,6 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface ParcelMapper {
-
     ParcelMapper INSTANCE = Mappers.getMapper(ParcelMapper.class);
 
     ParcelEntity dtoToEntity(ParcelDto parcelDto);

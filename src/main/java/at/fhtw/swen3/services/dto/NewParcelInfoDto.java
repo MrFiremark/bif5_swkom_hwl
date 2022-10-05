@@ -1,13 +1,12 @@
 package at.fhtw.swen3.services.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class NewParcelInfoDto {
+    private String trackingId;
 }
