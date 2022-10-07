@@ -3,6 +3,7 @@ package at.fhtw.swen3.persistence;
 import java.net.URI;
 import java.util.Objects;
 import at.fhtw.swen3.persistence.HopArrival;
+import at.fhtw.swen3.persistence.enums.StateEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -27,47 +28,6 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-14T11:21:04.473420Z[Etc/UTC]")
 public class TrackingInformation {
 
-  /**
-   * State of the parcel.
-   */
-  public enum StateEnum {
-    PICKUP("Pickup"),
-    
-    INTRANSPORT("InTransport"),
-    
-    INTRUCKDELIVERY("InTruckDelivery"),
-    
-    TRANSFERRED("Transferred"),
-    
-    DELIVERED("Delivered");
-
-    private String value;
-
-    StateEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static StateEnum fromValue(String value) {
-      for (StateEnum b : StateEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   @JsonProperty("state")
   private StateEnum state;
 
@@ -88,7 +48,7 @@ public class TrackingInformation {
    * State of the parcel.
    * @return state
   */
-  @NotNull 
+  @NotNull
   @Schema(name = "state", description = "State of the parcel.", required = true)
   public StateEnum getState() {
     return state;

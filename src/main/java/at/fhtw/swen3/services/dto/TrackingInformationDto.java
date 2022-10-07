@@ -1,6 +1,7 @@
 package at.fhtw.swen3.services.dto;
 
 import at.fhtw.swen3.persistence.HopArrival;
+import at.fhtw.swen3.persistence.enums.StateEnum;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TrackingInformationDto {
+    private StateEnum state;
     private List<HopArrival> visitedHops = new ArrayList<>();
     private List<HopArrival> futureHops = new ArrayList<>();
 }
