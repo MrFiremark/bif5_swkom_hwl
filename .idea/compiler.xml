@@ -14,6 +14,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="bif5_swkom_hwl" target="1.8" />
+      <module name="openapi-spring" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

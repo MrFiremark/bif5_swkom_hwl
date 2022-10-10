@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.Pattern;
 import java.time.OffsetDateTime;
 
+@Builder
 @Getter
 @Setter
 @ToString
@@ -23,4 +24,18 @@ public class HopArrivalEntity {
     // TODO Brauch man das?
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private OffsetDateTime dateTime;
+
+    public boolean checkCode() {
+        if(code != "ABCD12")
+            return false;
+        else
+            return true;
+    }
+
+    public boolean checkDescription() {
+        if(description != "Warehouse 12-27")
+            return false;
+        else
+            return true;
+    }
 }

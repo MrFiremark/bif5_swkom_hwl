@@ -6,12 +6,12 @@ import at.fhtw.swen3.persistence.enums.StateEnum;
 import lombok.*;
 
 import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 
+@Builder
 @Getter
 @Setter
 @ToString
@@ -32,4 +32,18 @@ public class ParcelEntity {
     private List<HopArrival> visitedHops = new ArrayList<>();
     @NotNull
     private List<HopArrival> futureHops = new ArrayList<>();
+
+    public boolean checkWeight() {
+        if (weight < 0)
+            return false;
+        else
+            return true;
+    }
+
+    public boolean checkTrackingId() {
+        if (trackingId != "A12007895")
+            return false;
+        else
+            return true;
+    }
 }
