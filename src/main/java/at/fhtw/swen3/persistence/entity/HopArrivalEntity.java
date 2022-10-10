@@ -17,7 +17,7 @@ public class HopArrivalEntity {
     @Pattern(regexp = "^[A-Z]{4}\\d{1,4}$")
     private String code;
     // TODO Am anfagn nur Buchstaben und dann nur Zahlen und der rest?
-    @Pattern(regexp = "^[a-zA-Z\\d\\s-]+$")
+    @Pattern(regexp = "^[a-zA-ZßÄÖÜäöü/\\d \\-]*$")
     private String description;
 
     // TODO Brauch man das?
