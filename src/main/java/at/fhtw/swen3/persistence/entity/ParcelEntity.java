@@ -23,15 +23,15 @@ public class ParcelEntity {
     @DecimalMin("0.0")
     private Float weight;
     @NotNull
-    private Recipient recipient;
+    private RecipientEntity recipient;
     // TODO oder Valid
     @NotNull
-    private Recipient sender;
+    private RecipientEntity sender;
     private StateEnum state;
     @NotNull
-    private List<HopArrival> visitedHops = new ArrayList<>();
+    private List<HopArrivalEntity> visitedHops = new ArrayList<>();
     @NotNull
-    private List<HopArrival> futureHops = new ArrayList<>();
+    private List<HopArrivalEntity> futureHops = new ArrayList<>();
 
     public boolean checkWeight() {
         if (weight < 0)
