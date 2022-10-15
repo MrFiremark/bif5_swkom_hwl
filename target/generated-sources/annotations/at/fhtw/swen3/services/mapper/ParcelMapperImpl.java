@@ -17,7 +17,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-15T17:05:42+0200",
+    date = "2022-10-15T17:14:44+0200",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)"
 )
 public class ParcelMapperImpl implements ParcelMapper {
@@ -48,18 +48,20 @@ public class ParcelMapperImpl implements ParcelMapper {
     }
 
     @Override
-    public NewParcelInfo entityToNewParcelInfoDto(Parcel parcel) {
+    public NewParcelInfo entityToNewParcelInfoDto(ParcelEntity parcel) {
         if ( parcel == null ) {
             return null;
         }
 
         NewParcelInfo newParcelInfo = new NewParcelInfo();
 
+        newParcelInfo.setTrackingId( parcel.getTrackingId() );
+
         return newParcelInfo;
     }
 
     @Override
-    public Parcel entityToParcelDto(Parcel parcel) {
+    public Parcel entityToParcelDto(ParcelEntity parcel) {
         if ( parcel == null ) {
             return null;
         }
@@ -67,19 +69,23 @@ public class ParcelMapperImpl implements ParcelMapper {
         Parcel parcel1 = new Parcel();
 
         parcel1.setWeight( parcel.getWeight() );
-        parcel1.setRecipient( parcel.getRecipient() );
-        parcel1.setSender( parcel.getSender() );
+        parcel1.setRecipient( recipientEntityToRecipient( parcel.getRecipient() ) );
+        parcel1.setSender( recipientEntityToRecipient( parcel.getSender() ) );
 
         return parcel1;
     }
 
     @Override
-    public TrackingInformation entityToTrackingInformationDto(Parcel parcel) {
+    public TrackingInformation entityToTrackingInformationDto(ParcelEntity parcel) {
         if ( parcel == null ) {
             return null;
         }
 
         TrackingInformation trackingInformation = new TrackingInformation();
+
+        trackingInformation.setState( parcel.getState() );
+        trackingInformation.setVisitedHops( hopArrivalEntityListToHopArrivalList( parcel.getVisitedHops() ) );
+        trackingInformation.setFutureHops( hopArrivalEntityListToHopArrivalList( parcel.getFutureHops() ) );
 
         return trackingInformation;
     }
@@ -122,6 +128,49 @@ public class ParcelMapperImpl implements ParcelMapper {
         List<HopArrivalEntity> list1 = new ArrayList<HopArrivalEntity>( list.size() );
         for ( HopArrival hopArrival : list ) {
             list1.add( hopArrivalToHopArrivalEntity( hopArrival ) );
+        }
+
+        return list1;
+    }
+
+    protected Recipient recipientEntityToRecipient(RecipientEntity recipientEntity) {
+        if ( recipientEntity == null ) {
+            return null;
+        }
+
+        Recipient recipient = new Recipient();
+
+        recipient.setName( recipientEntity.getName() );
+        recipient.setStreet( recipientEntity.getStreet() );
+        recipient.setPostalCode( recipientEntity.getPostalCode() );
+        recipient.setCity( recipientEntity.getCity() );
+        recipient.setCountry( recipientEntity.getCountry() );
+
+        return recipient;
+    }
+
+    protected HopArrival hopArrivalEntityToHopArrival(HopArrivalEntity hopArrivalEntity) {
+        if ( hopArrivalEntity == null ) {
+            return null;
+        }
+
+        HopArrival hopArrival = new HopArrival();
+
+        hopArrival.setCode( hopArrivalEntity.getCode() );
+        hopArrival.setDescription( hopArrivalEntity.getDescription() );
+        hopArrival.setDateTime( hopArrivalEntity.getDateTime() );
+
+        return hopArrival;
+    }
+
+    protected List<HopArrival> hopArrivalEntityListToHopArrivalList(List<HopArrivalEntity> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<HopArrival> list1 = new ArrayList<HopArrival>( list.size() );
+        for ( HopArrivalEntity hopArrivalEntity : list ) {
+            list1.add( hopArrivalEntityToHopArrival( hopArrivalEntity ) );
         }
 
         return list1;
