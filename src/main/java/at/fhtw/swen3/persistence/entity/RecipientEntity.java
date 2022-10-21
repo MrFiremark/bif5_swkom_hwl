@@ -2,6 +2,7 @@ package at.fhtw.swen3.persistence.entity;
 
 import lombok.*;
 
+import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 
 @Builder
@@ -10,7 +11,14 @@ import javax.validation.constraints.Pattern;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "T_RECIPIENT")
 public class RecipientEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     private String name;
     @Pattern(regexp = "^([A-Z][A-Za-z0-9/ßÄÖÜäöü ]*)$")
     private String street;
@@ -18,6 +26,7 @@ public class RecipientEntity {
     private String postalCode;
     @Pattern(regexp = "^([A-Z][A-Za-z/ßÄÖÜäöü\\- ]*)$")
     private String city;
+
     private String country;
 
     public boolean checkStreet() {
