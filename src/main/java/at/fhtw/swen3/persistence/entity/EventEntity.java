@@ -1,6 +1,9 @@
 package at.fhtw.swen3.persistence.entity;
 
 import at.fhtw.swen3.util.JPAUtil;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import org.locationtech.jts.geom.Geometry;

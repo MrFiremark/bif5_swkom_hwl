@@ -20,9 +20,7 @@ public class HopArrivalEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Pattern(regexp = "^[A-Z]{4}\\d{1,4}$")
     private String code;
-    @Pattern(regexp = "^[a-zA-ZßÄÖÜäöü/\\d \\-]*$")
     private String description;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)

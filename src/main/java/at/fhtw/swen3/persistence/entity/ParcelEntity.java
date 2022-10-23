@@ -26,7 +26,6 @@ public class ParcelEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Pattern(regexp = "^[A-Z0-9]{9}$")
     private String trackingId;
     @DecimalMin("0.0")
     private Float weight;

@@ -1,6 +1,7 @@
 package at.fhtw.swen3.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
 import javax.persistence.*;
 

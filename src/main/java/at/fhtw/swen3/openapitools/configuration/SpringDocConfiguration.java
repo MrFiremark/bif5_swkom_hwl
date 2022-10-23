@@ -1,5 +1,6 @@
 package at.fhtw.swen3.openapitools.configuration;
 
+import at.fhtw.swen3.persistence.repository.ParcelRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -29,4 +30,5 @@ public class SpringDocConfiguration {
                 )
         ;
     }
+
 }
