@@ -12,7 +12,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <springdoc.version>1.6.8</springdoc.version>
         <swagger-ui.version>4.10.3</swagger-ui.version>
-        <hibernate.version>4.0.0.Final</hibernate.version>
     </properties>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -81,6 +80,12 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- JPA -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
         <!-- Bean Validation API support -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -120,12 +125,20 @@
             <artifactId>mapstruct-processor</artifactId>
             <version>1.4.2.Final</version>
         </dependency>
-        <!-- JPA -->
+
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.1</version>
         </dependency>
+
         <!-- Hibernate Spatial -->
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.1.4.Final</version>
+        </dependency>
+
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-spatial</artifactId>
@@ -133,17 +146,11 @@
             <type>pom</type>
         </dependency>
 
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>${hibernate.version}</version>
-        </dependency>
-
         <!-- the postgresql driver -->
         <dependency>
-            <groupId>postgresql</groupId>
+            <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>8.4-701.jdbc3</version>
+            <version>42.5.0</version>
         </dependency>
 
         <dependency>

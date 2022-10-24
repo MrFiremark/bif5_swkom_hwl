@@ -2,12 +2,13 @@ package at.fhtw.swen3.persistence.repository;
 
 import at.fhtw.swen3.persistence.entity.RecipientEntity;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RecipientRepositoryTest {
 
+    @Autowired
     private RecipientRepository recipientRepository;
 
     @Test
