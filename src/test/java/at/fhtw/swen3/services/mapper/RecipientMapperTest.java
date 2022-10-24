@@ -33,7 +33,8 @@ class RecipientMapperTest {
     @Test
     void entityToDto() {
         log.info("Test Recipient entityToDto");
-        final RecipientEntity recipientEntity = new RecipientEntity("Tux L. -Oves Azure", "Am Europlatz 3", "A-1120", "Wien", "Austria");
+        long id = 1;
+        final RecipientEntity recipientEntity = new RecipientEntity(id, "Tux L. -Oves Azure", "Am Europlatz 3", "A-1120", "Wien", "Austria");
         Recipient recipientDto = RecipientMapper.INSTANCE.entityToDto(recipientEntity);
         assertEquals(recipientEntity.getName(), recipientDto.getName());
         assertEquals(recipientEntity.getStreet(), recipientDto.getStreet());
