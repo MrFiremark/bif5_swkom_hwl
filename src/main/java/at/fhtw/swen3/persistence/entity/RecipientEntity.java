@@ -6,9 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 
 @Builder
-@Getter
-@Setter
-@ToString
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity

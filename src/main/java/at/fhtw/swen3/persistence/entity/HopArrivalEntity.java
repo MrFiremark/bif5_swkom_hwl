@@ -8,9 +8,7 @@ import javax.validation.constraints.Pattern;
 import java.time.OffsetDateTime;
 
 @Builder
-@Getter
-@Setter
-@ToString
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity

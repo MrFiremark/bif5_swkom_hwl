@@ -8,6 +8,4 @@ import lombok.RequiredArgsConstructor;
 public class HopServiceImpl implements HopService {
 
     private HopRepository hopRepository;
-
-
 }
