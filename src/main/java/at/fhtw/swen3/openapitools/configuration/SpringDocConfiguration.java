@@ -1,6 +1,7 @@
 package at.fhtw.swen3.openapitools.configuration;
 
 import at.fhtw.swen3.persistence.repository.ParcelRepository;
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,7 +12,7 @@ import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 
-@Configuration
+@SpringBootConfiguration
 public class SpringDocConfiguration {
 
     @Bean
