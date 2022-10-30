@@ -1,9 +1,7 @@
 package at.fhtw.swen3.persistence.entity;
 
 import at.fhtw.swen3.util.JPAUtil;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import org.locationtech.jts.geom.Geometry;
@@ -15,6 +13,10 @@ import javax.persistence.*;
 import java.awt.*;
 import java.util.Date;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class EventEntity {
 
@@ -26,44 +28,10 @@ public class EventEntity {
 
     private Date date;
 
+    /*
     @Type(type = "org.hibernate.spatial.GeometryType")
     private Point location;
-
-    public EventEntity() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    private void setId(Long id) {
-        this.id = id;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Point getLocation() {
-        return this.location;
-    }
-
-    public void setLocation(Point location) {
-        this.location = location;
-    }
-
+    */
 //    public void createAndStoreEvent(String title, Date theDate, String wktPoint) {
 //        Geometry geom = wktToGeometry(wktPoint);
 //

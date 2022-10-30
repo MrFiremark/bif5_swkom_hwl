@@ -1,4 +1,4 @@
-package at.fhtw.swen3.openapitools.configuration;
+package at.fhtw.swen3.configuration;
 
 import at.fhtw.swen3.persistence.repository.ParcelRepository;
 import org.springframework.context.annotation.Bean;
