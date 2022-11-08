@@ -1,27 +1,27 @@
-package at.fhtw.swen3.persistence.entity;
+package at.fhtw.swen3.persistence.entities;
 
-import at.fhtw.swen3.services.dto.Hop;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "T_WAREHOUSENEXTHOPS")
-public class WarehouseNextHopsEntity {
+@Table(name = "T_WAREHOUSE")
+public class WarehouseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Integer traveltimeMins;
+    private Integer level;
 
-    @OneToOne
-    private HopEntity hop;
+    @OneToMany
+    private List<WarehouseNextHopsEntity> nextHops = new ArrayList<>();
 }

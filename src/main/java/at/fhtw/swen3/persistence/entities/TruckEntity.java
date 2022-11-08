@@ -1,6 +1,5 @@
-package at.fhtw.swen3.persistence.entity;
+package at.fhtw.swen3.persistence.entities;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,8 +12,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "T_TRANSFERWAREHOUSE")
-public class TransferwarehouseEntity {
+@Table(name = "T_TRUCK")
+public class TruckEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,7 +21,5 @@ public class TransferwarehouseEntity {
 
     private String regionGeoJson;
 
-    private String logisticsPartner;
-
-    private String logisticsPartnerUrl;
+    private String numberPlate;
 }
