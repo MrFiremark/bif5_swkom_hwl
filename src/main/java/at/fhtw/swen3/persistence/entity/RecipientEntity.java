@@ -2,22 +2,26 @@ package at.fhtw.swen3.persistence.entity;
 
 import lombok.*;
 
+import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 
+@Data
 @Builder
-@Getter
-@Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "T_RECIPIENT")
 public class RecipientEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     private String name;
-    @Pattern(regexp = "^([A-Z][A-Za-z0-9/ßÄÖÜäöü ]*)$")
     private String street;
-    @Pattern(regexp = "^(A-([0-9]{4}))$")
     private String postalCode;
-    @Pattern(regexp = "^([A-Z][A-Za-z/ßÄÖÜäöü\\- ]*)$")
     private String city;
+
     private String country;
 
     public boolean checkStreet() {

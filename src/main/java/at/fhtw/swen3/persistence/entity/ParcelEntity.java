@@ -5,6 +5,7 @@ import at.fhtw.swen3.services.dto.Recipient;
 import at.fhtw.swen3.persistence.enums.StateEnum;
 import lombok.*;
 
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
@@ -13,24 +14,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Builder
-@Getter
-@Setter
-@ToString
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "T_PARCEL")
 public class ParcelEntity {
-    @Pattern(regexp = "^[A-Z0-9]{9}$")
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String trackingId;
     @DecimalMin("0.0")
     private Float weight;
-    @Valid
+
+    @OneToOne
     private RecipientEntity recipient;
-    @Valid
+
+    @OneToOne
     private RecipientEntity sender;
+
     private StateEnum state;
-    @Valid
+
+    @OneToMany
     private List<HopArrivalEntity> visitedHops = new ArrayList<>();
-    @Valid
+
+    @OneToMany
     private List<HopArrivalEntity> futureHops = new ArrayList<>();
 
     public boolean checkWeight() {

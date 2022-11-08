@@ -21,12 +21,15 @@ public class Recipient {
   @JsonProperty("name")
   private String name;
 
+  @Pattern(regexp = "^([A-Z][A-Za-z0-9/ßÄÖÜäöü ]*)$")
   @JsonProperty("street")
   private String street;
 
+  @Pattern(regexp = "^(A-([0-9]{4}))$")
   @JsonProperty("postalCode")
   private String postalCode;
 
+  @Pattern(regexp = "^([A-Z][A-Za-z/ßÄÖÜäöü\\- ]*)$")
   @JsonProperty("city")
   private String city;
 

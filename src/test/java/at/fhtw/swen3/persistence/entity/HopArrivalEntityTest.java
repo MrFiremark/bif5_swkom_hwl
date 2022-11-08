@@ -1,12 +1,6 @@
 package at.fhtw.swen3.persistence.entity;
 
-import at.fhtw.swen3.openapitools.OpenApiGeneratorApplication;
-import at.fhtw.swen3.persistence.enums.StateEnum;
-import at.fhtw.swen3.services.dto.Recipient;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;

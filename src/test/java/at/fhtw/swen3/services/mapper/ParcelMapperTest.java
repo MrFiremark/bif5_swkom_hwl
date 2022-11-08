@@ -26,6 +26,7 @@ class ParcelMapperTest {
 
         Parcel parcelDto = new Parcel();
         parcelDto.setWeight(11.0f);
+
         final Recipient recipientDto = new Recipient();
         recipientDto.setName("Tux L. -Oves Azure");
         recipientDto.setStreet("Am Europlatz 3");

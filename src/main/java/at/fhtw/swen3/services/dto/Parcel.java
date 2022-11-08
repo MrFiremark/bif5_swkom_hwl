@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-14T11:21:04.473420Z[Etc/UTC]")
 public class Parcel {
 
+  @DecimalMin("0.0")
   @JsonProperty("weight")
   private Float weight;
 
