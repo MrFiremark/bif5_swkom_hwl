@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: at.fhtw.swen3.persistence.repository.RecipientRepositoryTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 15.426 s <<< FAILURE! - in at.fhtw.swen3.persistence.repository.RecipientRepositoryTest
+testDeleteRecipient  Time elapsed: 0.014 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <1> but was: <0>
+	at at.fhtw.swen3.persistence.repository.RecipientRepositoryTest.testDeleteRecipient(RecipientRepositoryTest.java:50)
+
+testUpdateRecipient  Time elapsed: 0.014 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <2> but was: <1>
+	at at.fhtw.swen3.persistence.repository.RecipientRepositoryTest.testUpdateRecipient(RecipientRepositoryTest.java:44)
+

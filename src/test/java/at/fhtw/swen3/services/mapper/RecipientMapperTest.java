@@ -1,11 +1,10 @@
 package at.fhtw.swen3.services.mapper;
 
-import at.fhtw.swen3.persistence.entity.RecipientEntity;
+import at.fhtw.swen3.persistence.entities.RecipientEntity;
 import at.fhtw.swen3.services.dto.Recipient;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,7 +32,8 @@ class RecipientMapperTest {
     @Test
     void entityToDto() {
         log.info("Test Recipient entityToDto");
-        final RecipientEntity recipientEntity = new RecipientEntity("Tux L. -Oves Azure", "Am Europlatz 3", "A-1120", "Wien", "Austria");
+        long id = 1;
+        final RecipientEntity recipientEntity = new RecipientEntity(id, "Tux L. -Oves Azure", "Am Europlatz 3", "A-1120", "Wien", "Austria");
         Recipient recipientDto = RecipientMapper.INSTANCE.entityToDto(recipientEntity);
         assertEquals(recipientEntity.getName(), recipientDto.getName());
         assertEquals(recipientEntity.getStreet(), recipientDto.getStreet());
