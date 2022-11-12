@@ -8,4 +8,6 @@ import org.springframework.stereotype.Service;
 public interface ParcelService {
 
     ParcelEntity submitParcel(Parcel parcelDto);
+    ParcelEntity getParcelState(String trackingId);
+    ParcelEntity transferParcel(Parcel parcelDto, String trackingId);
 }

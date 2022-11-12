@@ -23,9 +23,7 @@ public class RecipientRepositoryTest {
 
     @Test
     public void testSaveNewRecipient() {
-
         recipientRepository.save(recipient);
-
         assertEquals(recipientRepository.count(), 1);
     }
 

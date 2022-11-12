@@ -1,6 +1,6 @@
 package at.fhtw.swen3.controller.rest;
 
-import at.fhtw.swen3.services.dto.Parcel;
+import at.fhtw.swen3.services.ParcelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -12,10 +12,12 @@ import javax.annotation.Generated;
 @Controller
 public class ParcelApiController implements ParcelApi {
 
-    private final NativeWebRequest request;
+    private ParcelService parcelService;
 
+    private final NativeWebRequest request;
     @Autowired
-    public ParcelApiController(NativeWebRequest request) {
+    public ParcelApiController(ParcelService parcelService, NativeWebRequest request){
+        this.parcelService = parcelService;
         this.request = request;
     }
 
