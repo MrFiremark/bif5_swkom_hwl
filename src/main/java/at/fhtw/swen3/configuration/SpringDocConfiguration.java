@@ -1,6 +1,8 @@
 package at.fhtw.swen3.configuration;
 
 import at.fhtw.swen3.persistence.repository.ParcelRepository;
+import at.fhtw.swen3.services.ParcelService;
+import at.fhtw.swen3.services.impl.ParcelServiceImpl;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

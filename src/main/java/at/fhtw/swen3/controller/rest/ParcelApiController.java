@@ -1,6 +1,6 @@
 package at.fhtw.swen3.controller.rest;
 
-
+import at.fhtw.swen3.services.dto.Parcel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.context.request.NativeWebRequest;

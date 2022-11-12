@@ -26,7 +26,6 @@ public class Warehouse extends Hop {
   private Integer level;
 
   @JsonProperty("nextHops")
-  @Valid
   private List<WarehouseNextHops> nextHops = new ArrayList<>();
 
   public Warehouse level(Integer level) {
