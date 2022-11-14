@@ -1,16 +1,20 @@
 package at.fhtw.swen3.services.impl;
 
-import at.fhtw.swen3.persistence.repository.HopArrivalRepository;
+import at.fhtw.swen3.persistence.repositories.HopArrivalRepository;
 import at.fhtw.swen3.services.HopArrivalService;
+import at.fhtw.swen3.services.validation.ValidatorUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
+@Slf4j
 public class HopArrivalServiceImpl implements HopArrivalService {
 
-    private HopArrivalRepository hopArrivalRepository;
+    @Autowired
+    private final HopArrivalRepository hopArrivalRepository;
 
+    @Autowired
+    private final ValidatorUtil validatorUtil;
 
 }
