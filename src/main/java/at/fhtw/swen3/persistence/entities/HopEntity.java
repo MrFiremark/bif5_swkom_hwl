@@ -1,5 +1,6 @@
 package at.fhtw.swen3.persistence.entities;
 
+import at.fhtw.swen3.services.dto.GeoCoordinate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,6 +32,7 @@ public class HopEntity {
     private String locationName;
 
     //Was a GeoCoordinate before, but wanted to try something
-    private Point locationCoordinates;
+    @OneToOne
+    private GeoCoordinateEntity locationCoordinates;
 
 }

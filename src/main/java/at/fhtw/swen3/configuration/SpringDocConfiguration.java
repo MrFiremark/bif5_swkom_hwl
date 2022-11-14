@@ -1,16 +1,17 @@
 package at.fhtw.swen3.configuration;
 
-import at.fhtw.swen3.persistence.repository.ParcelRepository;
+import at.fhtw.swen3.persistence.repositories.*;
+import at.fhtw.swen3.services.*;
+import at.fhtw.swen3.services.impl.*;
+import at.fhtw.swen3.services.mapper.ParcelMapper;
+import at.fhtw.swen3.services.validation.ValidatorUtil;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.Contact;
-import io.swagger.v3.oas.models.info.License;
-import io.swagger.v3.oas.models.Components;
-import io.swagger.v3.oas.models.security.SecurityScheme;
+import org.springframework.context.annotation.Primary;
 
 @SpringBootConfiguration
 public class SpringDocConfiguration {
@@ -30,6 +31,53 @@ public class SpringDocConfiguration {
                                 .version("1.22.1")
                 )
         ;
+    }
+    @Primary
+    @Bean
+    public HopArrivalService getHopArrivalService(HopArrivalRepository hopArrivalRepository, ValidatorUtil validatorUtil){
+        return new HopArrivalServiceImpl(hopArrivalRepository, validatorUtil);
+    }
+
+    @Primary
+    @Bean
+    public HopService getHopService(HopRepository hopRepository){
+        return new HopServiceImpl(hopRepository);
+    }
+
+    @Primary
+    @Bean
+    public ParcelService getParcelService(ParcelRepository parcelRepository, ValidatorUtil validatorUtil){
+        return new ParcelServiceImpl(parcelRepository, validatorUtil);
+    }
+
+    @Primary
+    @Bean
+    public RecipientService getRecipientService(RecipientRepository recipientRepository, ValidatorUtil validatorUtil){
+        return new RecipientServiceImpl(recipientRepository, validatorUtil);
+    }
+
+    @Primary
+    @Bean
+    public TransferwarehouseService getTransferwarehouseService(TransferwarehouseRepository transferwarehouseRepository){
+        return new TransferwarehouseServiceImpl(transferwarehouseRepository);
+    }
+
+    @Primary
+    @Bean
+    public TruckService getTruckService(TruckRepository truckRepository){
+        return new TruckServiceImpl(truckRepository);
+    }
+
+    @Primary
+    @Bean
+    public WarehouseNextHopsService getWarehouseNextHopsService(WarehouseNextHopsRepository warehouseNextHopsRepository){
+        return new WarehouseNextHopsServiceImpl(warehouseNextHopsRepository);
+    }
+
+    @Primary
+    @Bean
+    public WarehouseService getWarehouseService(WarehouseRepository warehouseRepository){
+        return new WarehouseServiceImpl(warehouseRepository);
     }
 
 }

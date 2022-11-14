@@ -1,4 +1,4 @@
-package at.fhtw.swen3.persistence.repository;
+package at.fhtw.swen3.persistence.repositories;
 
 import at.fhtw.swen3.persistence.entities.RecipientEntity;
 import org.junit.jupiter.api.Test;
@@ -23,9 +23,7 @@ public class RecipientRepositoryTest {
 
     @Test
     public void testSaveNewRecipient() {
-
         recipientRepository.save(recipient);
-
         assertEquals(recipientRepository.count(), 1);
     }
 

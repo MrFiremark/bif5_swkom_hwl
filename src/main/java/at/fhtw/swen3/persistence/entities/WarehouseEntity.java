@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 @Builder
@@ -23,5 +24,6 @@ public class WarehouseEntity {
     private Integer level;
 
     @OneToMany
+    @NotNull
     private List<WarehouseNextHopsEntity> nextHops = new ArrayList<>();
 }

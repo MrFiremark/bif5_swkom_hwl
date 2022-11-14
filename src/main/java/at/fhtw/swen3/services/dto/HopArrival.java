@@ -21,11 +21,9 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-14T11:21:04.473420Z[Etc/UTC]")
 public class HopArrival {
 
-  @Pattern(regexp = "^[A-Z]{4}\\d{1,4}$")
   @JsonProperty("code")
   private String code;
 
-  @Pattern(regexp = "^[a-zA-ZßÄÖÜäöü/\\d \\-]*$")
   @JsonProperty("description")
   private String description;
 
