@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: at.fhtw.swen3.persistence.entity.HopArrivalEntityTest
--------------------------------------------------------------------------------
-Tests run: 6, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 1.116 s <<< FAILURE! - in at.fhtw.swen3.persistence.entity.HopArrivalEntityTest
-validationTest_NotOk  Time elapsed: 0.058 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: Validation should fail!
-	at at.fhtw.swen3.persistence.entity.HopArrivalEntityTest.validationTest_NotOk(HopArrivalEntityTest.java:64)
-
