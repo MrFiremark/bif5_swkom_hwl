@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 public class RecipientRepositoryTest {
 
+    /*
     @Autowired
     RecipientRepository recipientRepository;
 
@@ -44,5 +45,5 @@ public class RecipientRepositoryTest {
     public void testDeleteRecipient(){
         recipientRepository.delete(recipient);
         assertEquals(recipientRepository.count(), 0);
-    }
+    }*/
 }
