@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.awt.*;
 
 @Entity
@@ -33,6 +34,7 @@ public class HopEntity {
 
     //Was a GeoCoordinate before, but wanted to try something
     @OneToOne
+    @NotNull
     private GeoCoordinateEntity locationCoordinates;
 
 }

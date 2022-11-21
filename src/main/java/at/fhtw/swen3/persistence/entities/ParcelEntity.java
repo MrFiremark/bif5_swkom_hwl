@@ -27,14 +27,17 @@ public class ParcelEntity {
     @DecimalMin("0.0")
     private Float weight;
 
-    @OneToOne(cascade = {CascadeType.ALL})
+    @OneToOne(cascade = {CascadeType.ALL}, mappedBy = "recipient")
+    @JoinColumn(name = "recipient_id")
     @NotNull
     private RecipientEntity recipient;
 
-    @OneToOne(cascade = {CascadeType.ALL})
+    @OneToOne(cascade = {CascadeType.ALL}, mappedBy = "recipient")
+    @JoinColumn(name = "recipient_id")
     @NotNull
     private RecipientEntity sender;
 
+    @NotNull
     private StateEnum state;
 
     @OneToMany(cascade = {CascadeType.ALL}, orphanRemoval = true)
