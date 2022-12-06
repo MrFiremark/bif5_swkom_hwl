@@ -15,7 +15,7 @@ public class RecipientRepositoryTest {
     RecipientRepository recipientRepository;
 
     public RecipientEntity recipient = RecipientEntity.builder()
-            .name("Markus Test")
+            .name("Anton")
             .street("Landstraße 27")
             .postalCode("B-2420")
             .city("Vienna")

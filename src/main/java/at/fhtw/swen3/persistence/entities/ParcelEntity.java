@@ -35,6 +35,7 @@ public class ParcelEntity {
     @NotNull
     private RecipientEntity sender;
 
+    @NotNull
     private StateEnum state;
 
     @OneToMany(cascade = {CascadeType.ALL}, orphanRemoval = true)

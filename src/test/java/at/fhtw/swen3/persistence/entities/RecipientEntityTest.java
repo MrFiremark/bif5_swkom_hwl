@@ -14,7 +14,7 @@ class RecipientEntityTest {
     @Test
     public void validationTest_NotOk() {
         final RecipientEntity entity = RecipientEntity.builder()
-                .name("Markus")
+                .name("Max")
                 .street("Landstraße 27")
                 .postalCode("B-2420")
                 .city("Vienna")
@@ -32,7 +32,7 @@ class RecipientEntityTest {
     @Test
     public void validationTest_Ok() {
         final RecipientEntity entity = RecipientEntity.builder()
-                .name("Markus")
+                .name("Max")
                 .street("Landstraße 27")
                 .postalCode("A-1200")
                 .city("Vienna")

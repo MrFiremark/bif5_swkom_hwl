@@ -8,11 +8,13 @@ import at.fhtw.swen3.services.dto.*;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.OffsetDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
 class ParcelMapperTest {
 
     private static final Logger log = LoggerFactory.getLogger(ParcelMapperTest.class);

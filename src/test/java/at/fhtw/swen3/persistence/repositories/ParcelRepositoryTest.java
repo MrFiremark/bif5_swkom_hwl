@@ -23,7 +23,7 @@ class ParcelRepositoryTest {
     @Test
     void checkParcelSave() {
         RecipientEntity recipientEntity = RecipientEntity.builder()
-                .name("Markus")
+                .name("Anton")
                 .street("Landstraße 27")
                 .postalCode("A-2420")
                 .city("Vienna")
@@ -31,7 +31,7 @@ class ParcelRepositoryTest {
                 .build();
 
         RecipientEntity senderEntity = RecipientEntity.builder()
-                .name("Holzer")
+                .name("Max")
                 .street("Europlatz 97")
                 .postalCode("A-3540")
                 .city("Vienna")
