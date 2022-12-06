@@ -1,16 +1,5 @@
-at\fhtw\swen3\persistence\repository\WarehouseNextHopsRepositoryTest.class
-at\fhtw\swen3\persistence\repository\TruckRepositoryTest.class
-at\fhtw\swen3\services\mapper\HopArrivalMapperTest.class
-at\fhtw\swen3\persistence\entity\HopArrivalEntityTest.class
 at\fhtw\swen3\services\WarehouseApiTest.class
-at\fhtw\swen3\persistence\repository\HopRepositoryTest.class
-at\fhtw\swen3\persistence\repository\HopArrivalRepositoryTest.class
-at\fhtw\swen3\persistence\repository\ParcelRepositoryTest.class
 at\fhtw\swen3\services\ParcelApiTest.class
-at\fhtw\swen3\persistence\repository\RecipientRepositoryTest.class
-at\fhtw\swen3\persistence\entity\ParcelEntityTest.class
+at\fhtw\swen3\services\mapper\HopArrivalMapperTest.class
 at\fhtw\swen3\services\mapper\ParcelMapperTest.class
 at\fhtw\swen3\services\mapper\RecipientMapperTest.class
-at\fhtw\swen3\persistence\repository\TransferwarehouseRepositoryTest.class
-at\fhtw\swen3\persistence\entity\RecipientEntityTest.class
-at\fhtw\swen3\persistence\repository\WarehouseRepositoryTest.class

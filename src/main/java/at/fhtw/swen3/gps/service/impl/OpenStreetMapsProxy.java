@@ -17,10 +17,12 @@ public class OpenStreetMapsProxy implements GeoEncodingService {
 
     @Override
     public GeoCoordinate encodeAddress(String address) throws IOException, InterruptedException {
+        String baseUrl = "https://nominatim.openstreetmap.org/search?";
         StringBuilder uriBuilder = new StringBuilder();
-        uriBuilder.append("https://nominatim.openstreetmap.org/search?");
+        uriBuilder.append(baseUrl);
         uriBuilder.append("q=").append(URLEncoder.encode(address, StandardCharsets.UTF_8));
         uriBuilder.append("&format=json");
+
         URI uri = URI.create(uriBuilder.toString());
 
         HttpRequest request = HttpRequest.newBuilder()
@@ -30,11 +32,10 @@ public class OpenStreetMapsProxy implements GeoEncodingService {
 
         HttpClient client = HttpClient.newHttpClient();
 
-        // send get request
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        // parse get request into RouteResponse
+
         GeoCoordinate[] geolocation = objectMapper.readValue(response.body(), GeoCoordinate[].class);
         System.out.println(geolocation[0].toString());
         return geolocation[0];
