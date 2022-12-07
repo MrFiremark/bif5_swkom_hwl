@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.awt.*;
 
 @Entity
@@ -24,6 +25,7 @@ public class HopEntity {
 
     private String hopType;
 
+    @Pattern(regexp = "^[A-Z]{4}\\d{1,4}$")
     private String code;
 
     private String description;

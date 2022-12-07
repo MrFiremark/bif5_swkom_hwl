@@ -27,5 +27,6 @@ public class HopArrivalEntity {
     private String description;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @NotNull
     private OffsetDateTime dateTime;
 }
