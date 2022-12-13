@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Table(name = "t_GEOCOORDINATE")
 public class GeoCoordinateEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Double lat;

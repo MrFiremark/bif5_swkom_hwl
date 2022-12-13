@@ -1,5 +1,7 @@
 package at.fhtw.swen3.configuration;
 
+import at.fhtw.swen3.gps.service.GeoEncodingService;
+import at.fhtw.swen3.gps.service.impl.OpenStreetMapsProxy;
 import at.fhtw.swen3.persistence.repositories.*;
 import at.fhtw.swen3.services.*;
 import at.fhtw.swen3.services.impl.*;
@@ -32,6 +34,13 @@ public class SpringDocConfiguration {
                 )
         ;
     }
+
+    @Primary
+    @Bean
+    public GeoEncodingService getOpenStreetMapsProxy(){
+        return new OpenStreetMapsProxy();
+    }
+
     @Primary
     @Bean
     public HopArrivalService getHopArrivalService(HopArrivalRepository hopArrivalRepository, ValidatorUtil validatorUtil){
@@ -46,8 +55,8 @@ public class SpringDocConfiguration {
 
     @Primary
     @Bean
-    public ParcelService getParcelService(ParcelRepository parcelRepository, ValidatorUtil validatorUtil){
-        return new ParcelServiceImpl(parcelRepository, validatorUtil);
+    public ParcelService getParcelService(ParcelRepository parcelRepository, ValidatorUtil validatorUtil, GeoEncodingService geoEncodingService){
+        return new ParcelServiceImpl(parcelRepository, validatorUtil, geoEncodingService);
     }
 
     @Primary

@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Table(name = "T_ERROR")
 public class ErrorEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String errorMessage;

@@ -1,10 +1,10 @@
 package at.fhtw.swen3.gps.service;
 
-import at.fhtw.swen3.services.dto.GeoCoordinate;
+import at.fhtw.swen3.persistence.entities.GeoCoordinateEntity;
 
 import java.io.IOException;
 
 public interface GeoEncodingService {
 
-    GeoCoordinate encodeAddress(String address) throws IOException, InterruptedException;
+    GeoCoordinateEntity encodeAddress(String address) throws IOException, InterruptedException;
 }

@@ -14,7 +14,7 @@ import javax.validation.constraints.Pattern;
 public class RecipientEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Pattern(regexp = "^([A-Z][A-Za-z/ßÄÖÜäöü\\- ]*)$")
@@ -28,5 +28,10 @@ public class RecipientEntity {
     private String city;
 
     private String country;
+
+    public String getAddress(){
+        return street + "," + postalCode + "," + city + "," + country;
+    }
+
 }
 

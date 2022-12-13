@@ -20,7 +20,7 @@ import java.util.List;
 public class ParcelEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Pattern(regexp = "^[A-Z0-9]{9}$")
     private String trackingId;

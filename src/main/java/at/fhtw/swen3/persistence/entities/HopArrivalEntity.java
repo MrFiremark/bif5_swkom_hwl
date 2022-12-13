@@ -17,7 +17,7 @@ import java.time.OffsetDateTime;
 public class HopArrivalEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Pattern(regexp = "^[A-Z]{4}\\d{1,4}$")
