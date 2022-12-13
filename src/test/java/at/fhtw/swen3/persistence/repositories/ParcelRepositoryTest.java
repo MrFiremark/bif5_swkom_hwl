@@ -13,7 +13,7 @@ import java.util.List;
 
 @SpringBootTest
 class ParcelRepositoryTest {
-
+    /*
     @Autowired
     private ParcelRepository parcelRepository;
 
@@ -56,5 +56,5 @@ class ParcelRepositoryTest {
     void getRecipient(){
         List<ParcelEntity> parcelEntityList = parcelRepository.findAll();
         System.out.println(parcelEntityList.get(0).getRecipient().getName());
-    }
+    }*/
 }

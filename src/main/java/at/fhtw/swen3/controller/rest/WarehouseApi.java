@@ -62,7 +62,6 @@ public interface WarehouseApi {
         produces = { "application/json" }
     )
     default ResponseEntity<Warehouse> exportWarehouses(
-        
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {

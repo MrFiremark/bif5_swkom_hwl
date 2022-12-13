@@ -13,7 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "T_TRUCK")
-public class TruckEntity extends HopEntity{
+public class TruckEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
