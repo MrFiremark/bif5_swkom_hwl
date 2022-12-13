@@ -13,7 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "T_TRANSFERWAREHOUSE")
-public class TransferwarehouseEntity {
+public class TransferwarehouseEntity extends HopEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

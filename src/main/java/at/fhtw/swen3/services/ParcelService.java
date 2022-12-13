@@ -11,6 +11,8 @@ import java.io.IOException;
 public interface ParcelService {
 
     String submitParcel(Parcel parcelDto) throws ConstraintViolationException, IOException, InterruptedException;
+
+    String transferParcel(String trackingId, Parcel parcelDto) throws IOException, InterruptedException;
     ParcelEntity getParcelState(String trackingId);
-    ParcelEntity transferParcel(Parcel parcelDto, String trackingId);
+
 }

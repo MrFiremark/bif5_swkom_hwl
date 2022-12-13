@@ -15,9 +15,10 @@ import at.fhtw.swen3.util.UuidGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import javax.persistence.PersistenceException;
 import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,7 +39,6 @@ public class ParcelServiceImpl implements ParcelService {
     @Override
     public String submitParcel(Parcel parcelDto) throws ConstraintViolationException, IOException, InterruptedException {
         ParcelEntity parcelEntity = ParcelMapper.INSTANCE.dtoToEntity(null,parcelDto,null);
-        //validatorUtil.validate(parcelEntity);
 
         parcelEntity.setTrackingId(UuidGenerator.generateTrackingId());
 
@@ -48,6 +48,27 @@ public class ParcelServiceImpl implements ParcelService {
         parcelEntity.setState(StateEnum.PICKUP);
         parcelEntity.setVisitedHops(new ArrayList<HopArrivalEntity>());
         parcelEntity.setFutureHops(new ArrayList<HopArrivalEntity>());
+        validatorUtil.validate(parcelEntity);
+        parcelRepository.save(parcelEntity);
+        log.info("New Parcel created!");
+        return parcelEntity.getTrackingId();
+    }
+
+    @Override
+    public String transferParcel(String trackingId, Parcel parcelDto) throws IOException, InterruptedException, PersistenceException {
+        if(parcelRepository.findByTrackingId(trackingId) != null){
+            throw new PersistenceException();
+        }
+        ParcelEntity parcelEntity = ParcelMapper.INSTANCE.dtoToEntity(null,parcelDto,null);
+        parcelEntity.setTrackingId(trackingId);
+
+        GeoCoordinateEntity recipientLocation = geoEncodingService.encodeAddress(parcelEntity.getRecipient().getAddress());
+        GeoCoordinateEntity senderLocation = geoEncodingService.encodeAddress(parcelEntity.getSender().getAddress());
+
+        parcelEntity.setState(StateEnum.PICKUP);
+        parcelEntity.setVisitedHops(new ArrayList<HopArrivalEntity>());
+        parcelEntity.setFutureHops(new ArrayList<HopArrivalEntity>());
+        validatorUtil.validate(parcelEntity);
         parcelRepository.save(parcelEntity);
         log.info("New Parcel created!");
         return parcelEntity.getTrackingId();
@@ -55,18 +76,8 @@ public class ParcelServiceImpl implements ParcelService {
 
     @Override
     public ParcelEntity getParcelState(String trackingId) {
-        ParcelEntity parcelEntity = parcelRepository.findByTrackingId(trackingId);
-        return parcelEntity;
+        return null;
     }
 
-    @Override
-    public ParcelEntity transferParcel(Parcel parcelDto, String trackingId) {
-        ParcelEntity parcelEntity = parcelRepository.findByTrackingId(trackingId);
-        validatorUtil.validate(parcelEntity);
-        parcelEntity.setRecipient(RecipientMapper.INSTANCE.dtoToEntity(parcelDto.getRecipient()));
-        parcelEntity.setSender(RecipientMapper.INSTANCE.dtoToEntity(parcelDto.getSender()));
-        parcelRepository.save(parcelEntity);
-        return parcelEntity;
-    }
 
 }

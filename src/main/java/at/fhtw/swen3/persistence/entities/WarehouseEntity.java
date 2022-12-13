@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "T_WAREHOUSE")
-public class WarehouseEntity {
+public class WarehouseEntity extends HopEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
