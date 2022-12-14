@@ -38,7 +38,7 @@ jobs:
       #Build the application using Maven
       - name: Upload JAR
         #This uploads artifacts from your workflow allowing you to share data between jobs and store data once a workflow is complete.
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           #Set artifact name
           name: artifact
@@ -55,7 +55,7 @@ jobs:
     steps:
       - name: Download JAR
         #Download the artifact which was uploaded in the build's job
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: artifact
       #Deploy the artifact (JAR) into AWS Beanstalk
