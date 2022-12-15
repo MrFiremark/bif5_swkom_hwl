@@ -42,8 +42,8 @@ public class ParcelServiceImpl implements ParcelService {
 
         parcelEntity.setTrackingId(UuidGenerator.generateTrackingId());
 
-        GeoCoordinateEntity recipientLocation = geoEncodingService.encodeAddress(parcelEntity.getRecipient().getAddress());
-        GeoCoordinateEntity senderLocation = geoEncodingService.encodeAddress(parcelEntity.getSender().getAddress());
+        //GeoCoordinateEntity recipientLocation = geoEncodingService.encodeAddress(parcelEntity.getRecipient().getAddress());
+        //GeoCoordinateEntity senderLocation = geoEncodingService.encodeAddress(parcelEntity.getSender().getAddress());
 
         parcelEntity.setState(StateEnum.PICKUP);
         parcelEntity.setVisitedHops(new ArrayList<HopArrivalEntity>());
@@ -62,8 +62,8 @@ public class ParcelServiceImpl implements ParcelService {
         ParcelEntity parcelEntity = ParcelMapper.INSTANCE.dtoToEntity(null,parcelDto,null);
         parcelEntity.setTrackingId(trackingId);
 
-        GeoCoordinateEntity recipientLocation = geoEncodingService.encodeAddress(parcelEntity.getRecipient().getAddress());
-        GeoCoordinateEntity senderLocation = geoEncodingService.encodeAddress(parcelEntity.getSender().getAddress());
+        //GeoCoordinateEntity recipientLocation = geoEncodingService.encodeAddress(parcelEntity.getRecipient().getAddress());
+        //GeoCoordinateEntity senderLocation = geoEncodingService.encodeAddress(parcelEntity.getSender().getAddress());
 
         parcelEntity.setState(StateEnum.PICKUP);
         parcelEntity.setVisitedHops(new ArrayList<HopArrivalEntity>());
