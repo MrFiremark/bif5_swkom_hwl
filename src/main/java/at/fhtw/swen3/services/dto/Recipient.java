@@ -36,6 +36,19 @@ public class Recipient {
   @JsonProperty("expoPushToken")
   private String expoPushToken;
 
+  @Schema(name = "expoPushToken", description = "Expopushtoken", required = false)
+  public String getExpoPushToken() {
+    return expoPushToken;
+  }
+
+  public void setExpoPushToken(String expoPushToken) {
+    this.expoPushToken = expoPushToken;
+  }
+  public Recipient expoPushToken(String expoPushToken) {
+    this.expoPushToken = expoPushToken;
+    return this;
+  }
+
   public Recipient name(String name) {
     this.name = name;
     return this;
@@ -144,12 +157,13 @@ public class Recipient {
         Objects.equals(this.street, recipient.street) &&
         Objects.equals(this.postalCode, recipient.postalCode) &&
         Objects.equals(this.city, recipient.city) &&
-        Objects.equals(this.country, recipient.country);
+        Objects.equals(this.country, recipient.country) &&
+            Objects.equals(this.expoPushToken, recipient.expoPushToken);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, street, postalCode, city, country);
+    return Objects.hash(name, street, postalCode, city, country, expoPushToken);
   }
 
   @Override
@@ -161,6 +175,7 @@ public class Recipient {
     sb.append("    postalCode: ").append(toIndentedString(postalCode)).append("\n");
     sb.append("    city: ").append(toIndentedString(city)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
+    sb.append("    expoPushToken: ").append(toIndentedString(expoPushToken)).append("\n");
     sb.append("}");
     return sb.toString();
   }

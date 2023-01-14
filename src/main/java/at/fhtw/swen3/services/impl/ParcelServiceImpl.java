@@ -41,7 +41,6 @@ public class ParcelServiceImpl implements ParcelService {
     @Override
     public String submitParcel(Parcel parcelDto) throws ConstraintViolationException, IOException, InterruptedException {
         ParcelEntity parcelEntity = ParcelMapper.INSTANCE.dtoToEntity(null,parcelDto,null);
-
         parcelEntity.setTrackingId(UuidGenerator.generateTrackingId());
 
         //GeoCoordinateEntity recipientLocation = geoEncodingService.encodeAddress(parcelEntity.getRecipient().getAddress());

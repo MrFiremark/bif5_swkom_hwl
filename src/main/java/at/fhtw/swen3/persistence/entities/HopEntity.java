@@ -13,7 +13,6 @@ import java.awt.*;
 
 @Entity
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "T_HOP")

@@ -14,8 +14,8 @@ import java.net.http.HttpResponse;
 public class NotificationServiceImpl implements NotificationService {
     @Override
     public void sendPushNotification(Notification notification) {
-        String expoPushToken = "ExponentPushToken[BLO-nqOVMqTrzZULkiycd8]";
-        String message = "{\"to\":\"" + expoPushToken + "\", \"title\":\"Expo Test!\", \"body\":\"Hello World!\", \"data\":{\"customData\":\"" + notification.getParcel().getTrackingId() + "\"}}";
+        String expoPushToken = notification.getParcel().getRecipient().getExpoPushToken();
+        String message = "{\"to\":\"" + expoPushToken + "\", \"title\":\"Expo Test!\", \"body\":\"Hello World!\", \"data\":{\"trackingId\":\"" + notification.getParcel().getTrackingId() + "\", \"ParcelState\":\"" + notification.getParcel().getState() + "\"}}";
         String url = "https://exp.host/--/api/v2/push/send";
 
         HttpRequest request = HttpRequest.newBuilder()

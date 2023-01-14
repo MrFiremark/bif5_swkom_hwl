@@ -1,5 +1,6 @@
 package at.fhtw.swen3.persistence.entities;
 
+import at.fhtw.swen3.services.dto.Hop;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,11 +14,12 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "T_TRANSFERWAREHOUSE")
-public class TransferwarehouseEntity{
+public class TransferwarehouseEntity extends HopEntity {
 
+    /*
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id;*/
 
     private String regionGeoJson;
 

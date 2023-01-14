@@ -30,6 +30,7 @@ public class RecipientEntity {
     private String country;
 
     private String expoPushToken;
+
     public String getAddress(){
         return street + "," + postalCode + "," + city + "," + country;
     }
