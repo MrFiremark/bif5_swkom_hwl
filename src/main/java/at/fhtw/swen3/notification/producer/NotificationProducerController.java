@@ -1,6 +1,7 @@
 package at.fhtw.swen3.notification.producer;
 
 import at.fhtw.swen3.notification.model.Notification;
+import at.fhtw.swen3.notification.service.impl.NotificationServiceImpl;
 import at.fhtw.swen3.persistence.entities.ParcelEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -20,7 +21,9 @@ public class NotificationProducerController {
                 .id(parcelEntity.getTrackingId())
                 .parcel(parcelEntity)
                 .build();
-        kafkaTemplate.send("topicName", notification);
+        NotificationServiceImpl notificationService = new NotificationServiceImpl();
+        notificationService.sendPushNotification(notification);
+        //kafkaTemplate.send("topicName", notification);
         return "Hello World.";
     }
 }

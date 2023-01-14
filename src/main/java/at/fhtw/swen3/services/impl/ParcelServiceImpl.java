@@ -73,7 +73,8 @@ public class ParcelServiceImpl implements ParcelService {
         parcelEntity.setFutureHops(new ArrayList<HopArrivalEntity>());
         validatorUtil.validate(parcelEntity);
         parcelRepository.save(parcelEntity);
-        log.info("New Parcel created!");
+        notificationProducerController.parcelNotification(parcelEntity);
+        log.info("Parcel transfer!");
         return parcelEntity.getTrackingId();
     }
 
@@ -90,6 +91,7 @@ public class ParcelServiceImpl implements ParcelService {
         parcelEntity.setState(StateEnum.DELIVERED);
 
         parcelRepository.save(parcelEntity);
+        notificationProducerController.parcelNotification(parcelEntity);
         log.info("Parcel delivered!");
     }
 
