@@ -1,6 +1,7 @@
 package at.fhtw.swen3.services.impl;
 
 import at.fhtw.swen3.gps.service.GeoEncodingService;
+import at.fhtw.swen3.notification.producer.NotificationProducerController;
 import at.fhtw.swen3.persistence.entities.GeoCoordinateEntity;
 import at.fhtw.swen3.persistence.entities.HopArrivalEntity;
 import at.fhtw.swen3.persistence.entities.ParcelEntity;
@@ -32,9 +33,10 @@ public class ParcelServiceImpl implements ParcelService {
     private final ParcelRepository parcelRepository;
     @Autowired
     private final ValidatorUtil validatorUtil;
-
     @Autowired
     private final GeoEncodingService geoEncodingService;
+    @Autowired
+    private final NotificationProducerController notificationProducerController;
 
     @Override
     public String submitParcel(Parcel parcelDto) throws ConstraintViolationException, IOException, InterruptedException {
@@ -50,6 +52,7 @@ public class ParcelServiceImpl implements ParcelService {
         parcelEntity.setFutureHops(new ArrayList<HopArrivalEntity>());
         validatorUtil.validate(parcelEntity);
         parcelRepository.save(parcelEntity);
+        notificationProducerController.parcelNotification(parcelEntity);
         log.info("New Parcel created!");
         return parcelEntity.getTrackingId();
     }
@@ -72,6 +75,22 @@ public class ParcelServiceImpl implements ParcelService {
         parcelRepository.save(parcelEntity);
         log.info("New Parcel created!");
         return parcelEntity.getTrackingId();
+    }
+
+    @Override
+    public void reportParcelDelivery(String trackingId) throws IOException, InterruptedException, PersistenceException {
+        ParcelEntity parcelEntity = parcelRepository.findByTrackingId(trackingId);
+        if(parcelEntity == null){
+            throw new PersistenceException();
+        }
+
+        //GeoCoordinateEntity recipientLocation = geoEncodingService.encodeAddress(parcelEntity.getRecipient().getAddress());
+        //GeoCoordinateEntity senderLocation = geoEncodingService.encodeAddress(parcelEntity.getSender().getAddress());
+
+        parcelEntity.setState(StateEnum.DELIVERED);
+
+        parcelRepository.save(parcelEntity);
+        log.info("Parcel delivered!");
     }
 
     @Override

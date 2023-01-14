@@ -13,6 +13,7 @@ public interface ParcelService {
     String submitParcel(Parcel parcelDto) throws ConstraintViolationException, IOException, InterruptedException;
 
     String transferParcel(String trackingId, Parcel parcelDto) throws IOException, InterruptedException;
+    void reportParcelDelivery(String trackingId) throws IOException, InterruptedException;
     ParcelEntity getParcelState(String trackingId);
 
 }

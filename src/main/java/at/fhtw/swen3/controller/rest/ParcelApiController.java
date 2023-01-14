@@ -79,6 +79,20 @@ public class ParcelApiController implements ParcelApi {
         }
 
     }
+
+    @Override
+    public ResponseEntity<Void> reportParcelDelivery(
+            @Pattern(regexp = "^[A-Z0-9]{9}$") @Parameter(name = "trackingId", description = "The tracking ID of the parcel. E.g. PYJRB4HZ6 ", required = true) @PathVariable("trackingId") String trackingId
+    ) {
+        try {
+            parcelService.reportParcelDelivery(trackingId);
+        } catch (IOException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (InterruptedException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
     @Override
     public Optional<NativeWebRequest> getRequest() {
         return Optional.ofNullable(request);

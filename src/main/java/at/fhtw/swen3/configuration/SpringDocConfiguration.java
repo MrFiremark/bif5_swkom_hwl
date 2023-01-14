@@ -2,6 +2,7 @@ package at.fhtw.swen3.configuration;
 
 import at.fhtw.swen3.gps.service.GeoEncodingService;
 import at.fhtw.swen3.gps.service.impl.OpenStreetMapsProxy;
+import at.fhtw.swen3.notification.producer.NotificationProducerController;
 import at.fhtw.swen3.persistence.repositories.*;
 import at.fhtw.swen3.services.*;
 import at.fhtw.swen3.services.impl.*;
@@ -55,8 +56,8 @@ public class SpringDocConfiguration {
 
     @Primary
     @Bean
-    public ParcelService getParcelService(ParcelRepository parcelRepository, ValidatorUtil validatorUtil, GeoEncodingService geoEncodingService){
-        return new ParcelServiceImpl(parcelRepository, validatorUtil, geoEncodingService);
+    public ParcelService getParcelService(ParcelRepository parcelRepository, ValidatorUtil validatorUtil, GeoEncodingService geoEncodingService, NotificationProducerController notificationProducerController){
+        return new ParcelServiceImpl(parcelRepository, validatorUtil, geoEncodingService, notificationProducerController);
     }
 
     @Primary
