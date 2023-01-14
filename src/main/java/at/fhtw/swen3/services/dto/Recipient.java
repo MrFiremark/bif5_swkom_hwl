@@ -33,6 +33,9 @@ public class Recipient {
   @JsonProperty("country")
   private String country;
 
+  @JsonProperty("expoPushToken")
+  private String expoPushToken;
+
   public Recipient name(String name) {
     this.name = name;
     return this;
