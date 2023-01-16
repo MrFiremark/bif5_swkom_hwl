@@ -14,14 +14,19 @@ import java.net.http.HttpResponse;
 public class NotificationServiceImpl implements NotificationService {
     @Override
     public void sendPushNotification(Notification notification) {
-        String expoPushToken = notification.getParcel().getRecipient().getExpoPushToken();
-        String message = "{\"to\":\"" + expoPushToken + "\", \"title\":\"Expo Test!\", \"body\":\"Hello World!\", \"data\":{\"trackingId\":\"" + notification.getParcel().getTrackingId() + "\", \"ParcelState\":\"" + notification.getParcel().getState() + "\"}}";
+        String expoPushToken = notification.getParcel().getSender().getExpoPushToken();
+        StringBuilder messageBuilder = new StringBuilder();
+        messageBuilder.append("{\"to\":\"" + expoPushToken + "\",");
+        messageBuilder.append("\"title\":\"Parcel update!\",");
+        messageBuilder.append("\"body\":\"Parcel " + notification.getParcel().getTrackingId() +"\",");
+        messageBuilder.append("\"data\":{\"trackingId\":\"" + notification.getParcel().getTrackingId() + "\", \"ParcelState\":\"" + notification.getParcel().getState().name() + "\"}}");
+        //String message = "{\"to\":\"" + expoPushToken + "\", \"title\":\"Expo Test!\", \"body\":\"Hello World!\", \"data\":{\"trackingId\":\"" + notification.getParcel().getTrackingId() + "\", \"ParcelState\":\"" + notification.getParcel().getState().name() + "\"}}";
         String url = "https://exp.host/--/api/v2/push/send";
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(message))
+                .POST(HttpRequest.BodyPublishers.ofString(messageBuilder.toString()))
                 .build();
 
         HttpClient client = HttpClient.newHttpClient();
