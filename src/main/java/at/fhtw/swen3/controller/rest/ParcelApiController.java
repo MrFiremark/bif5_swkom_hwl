@@ -3,10 +3,12 @@ package at.fhtw.swen3.controller.rest;
 import at.fhtw.swen3.services.ParcelService;
 import at.fhtw.swen3.services.dto.NewParcelInfo;
 import at.fhtw.swen3.services.dto.Parcel;
+import at.fhtw.swen3.services.dto.TrackingInformation;
 import io.swagger.v3.oas.annotations.Parameter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -81,17 +83,42 @@ public class ParcelApiController implements ParcelApi {
     }
 
     @Override
+    public ResponseEntity<TrackingInformation> trackParcel(
+            @Pattern(regexp = "^[A-Z0-9]{9}$") @Parameter(name = "trackingId", description = "The tracking ID of the parcel. E.g. PYJRB4HZ6 ", required = true) @PathVariable("trackingId") String trackingId
+    ) {
+       try{
+           String parcelInfo = parcelService.getParcelState(trackingId);
+           ApiUtil.setExampleResponse(request, "application/json", parcelInfo);
+           return new ResponseEntity<>(HttpStatus.OK);
+       } catch (PersistenceException e){
+           String errorMessage = String.format("{ \"error\" : \"%s\" }",e.getMessage());
+           ApiUtil.setExampleResponse(request, "application/json", errorMessage);
+           return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+       } catch (Exception e){
+           String errorMessage = String.format("{ \"error\" : \"%s\" }",e.getMessage());
+           ApiUtil.setExampleResponse(request, "application/json", errorMessage);
+           return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+       }
+
+
+    }
+
+    @Override
     public ResponseEntity<Void> reportParcelDelivery(
             @Pattern(regexp = "^[A-Z0-9]{9}$") @Parameter(name = "trackingId", description = "The tracking ID of the parcel. E.g. PYJRB4HZ6 ", required = true) @PathVariable("trackingId") String trackingId
     ) {
         try {
             parcelService.reportParcelDelivery(trackingId);
-        } catch (IOException e) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (PersistenceException e) {
+            String errorMessage = String.format("{ \"error\" : \"%s\" }",e.getMessage());
+            ApiUtil.setExampleResponse(request, "application/json", errorMessage);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } catch (InterruptedException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            String errorMessage = String.format("{ \"error\" : \"%s\" }",e.getMessage());
+            ApiUtil.setExampleResponse(request, "application/json", errorMessage);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(HttpStatus.OK);
     }
     @Override
     public Optional<NativeWebRequest> getRequest() {

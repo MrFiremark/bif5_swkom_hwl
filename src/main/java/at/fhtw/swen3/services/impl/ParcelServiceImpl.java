@@ -13,6 +13,11 @@ import at.fhtw.swen3.services.mapper.ParcelMapper;
 import at.fhtw.swen3.services.mapper.RecipientMapper;
 import at.fhtw.swen3.services.validation.ValidatorUtil;
 import at.fhtw.swen3.util.UuidGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +28,7 @@ import javax.persistence.PersistenceException;
 import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 @RequiredArgsConstructor
 @Service
@@ -58,7 +64,7 @@ public class ParcelServiceImpl implements ParcelService {
 
     @Override
     public String transferParcel(String trackingId, Parcel parcelDto) throws IOException, InterruptedException, PersistenceException {
-        if(parcelRepository.findByTrackingId(trackingId) != null){
+        if(parcelRepository.findByTrackingId(trackingId) == null){
             throw new PersistenceException();
         }
         ParcelEntity parcelEntity = ParcelMapper.INSTANCE.dtoToEntity(null,parcelDto,null);
@@ -78,14 +84,11 @@ public class ParcelServiceImpl implements ParcelService {
     }
 
     @Override
-    public void reportParcelDelivery(String trackingId) throws IOException, InterruptedException, PersistenceException {
+    public void reportParcelDelivery(String trackingId) throws PersistenceException {
         ParcelEntity parcelEntity = parcelRepository.findByTrackingId(trackingId);
         if(parcelEntity == null){
             throw new PersistenceException();
         }
-
-        //GeoCoordinateEntity recipientLocation = geoEncodingService.encodeAddress(parcelEntity.getRecipient().getAddress());
-        //GeoCoordinateEntity senderLocation = geoEncodingService.encodeAddress(parcelEntity.getSender().getAddress());
 
         parcelEntity.setState(StateEnum.DELIVERED);
 
@@ -95,8 +98,20 @@ public class ParcelServiceImpl implements ParcelService {
     }
 
     @Override
-    public ParcelEntity getParcelState(String trackingId) {
-        return null;
+    public String getParcelState(String trackingId) throws PersistenceException, JsonProcessingException {
+        ParcelEntity parcelEntity = parcelRepository.findByTrackingId(trackingId);
+        if(parcelEntity == null){
+            throw new PersistenceException();
+        }
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode json = objectMapper.valueToTree(parcelEntity);
+        ArrayNode visitedHopsNode = objectMapper.valueToTree(parcelEntity.getVisitedHops());
+        ArrayNode futureHopsNode = objectMapper.valueToTree(parcelEntity.getFutureHops());
+        ObjectNode newJson = objectMapper.createObjectNode();
+        newJson.put("state", parcelEntity.getState().name());
+        newJson.putArray("visitedHops").addAll(visitedHopsNode);
+        newJson.putArray("futureHops").addAll(futureHopsNode);
+        return objectMapper.writeValueAsString(newJson);
     }
 
 
