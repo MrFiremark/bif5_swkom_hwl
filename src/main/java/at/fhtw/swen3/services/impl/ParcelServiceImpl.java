@@ -71,7 +71,7 @@ public class ParcelServiceImpl implements ParcelService {
 
     @Override
     public String transferParcel(String trackingId, Parcel parcelDto) throws IOException, InterruptedException, PersistenceException {
-        if(parcelRepository.findByTrackingId(trackingId) == null){
+        if(parcelRepository.findByTrackingId(trackingId) != null){
             throw new PersistenceException();
         }
         ParcelEntity parcelEntity = ParcelMapper.INSTANCE.dtoToEntity(null,parcelDto,null);
