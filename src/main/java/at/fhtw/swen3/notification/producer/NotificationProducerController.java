@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("notification-demo")
 public class NotificationProducerController {
+    /*
     @Autowired
     private KafkaTemplate<String, Notification> kafkaTemplate;
 
@@ -25,5 +26,5 @@ public class NotificationProducerController {
         notificationService.sendPushNotification(notification);
         //kafkaTemplate.send("topicName", notification);
         return "Hello World.";
-    }
+    }*/
 }

@@ -2,7 +2,10 @@ package at.fhtw.swen3.configuration;
 
 import at.fhtw.swen3.gps.service.GeoEncodingService;
 import at.fhtw.swen3.gps.service.impl.OpenStreetMapsProxy;
+import at.fhtw.swen3.notification.model.Notification;
 import at.fhtw.swen3.notification.producer.NotificationProducerController;
+import at.fhtw.swen3.notification.service.NotificationService;
+import at.fhtw.swen3.notification.service.impl.NotificationServiceImpl;
 import at.fhtw.swen3.persistence.repositories.*;
 import at.fhtw.swen3.services.*;
 import at.fhtw.swen3.services.impl.*;
@@ -44,6 +47,13 @@ public class SpringDocConfiguration {
 
     @Primary
     @Bean
+    public NotificationService getNotificationService(){
+        return new NotificationServiceImpl();
+    }
+
+
+    @Primary
+    @Bean
     public HopArrivalService getHopArrivalService(HopArrivalRepository hopArrivalRepository, ValidatorUtil validatorUtil){
         return new HopArrivalServiceImpl(hopArrivalRepository, validatorUtil);
     }
@@ -56,8 +66,8 @@ public class SpringDocConfiguration {
 
     @Primary
     @Bean
-    public ParcelService getParcelService(ParcelRepository parcelRepository, ValidatorUtil validatorUtil, GeoEncodingService geoEncodingService, NotificationProducerController notificationProducerController){
-        return new ParcelServiceImpl(parcelRepository, validatorUtil, geoEncodingService, notificationProducerController);
+    public ParcelService getParcelService(ParcelRepository parcelRepository, ValidatorUtil validatorUtil, GeoEncodingService geoEncodingService, NotificationService notificationService){
+        return new ParcelServiceImpl(parcelRepository, validatorUtil, geoEncodingService, notificationService);
     }
 
     @Primary

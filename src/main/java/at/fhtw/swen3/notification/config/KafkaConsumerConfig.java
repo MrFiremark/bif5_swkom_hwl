@@ -17,7 +17,7 @@ import java.util.Map;
 @EnableKafka
 @Configuration
 public class KafkaConsumerConfig {
-
+    /*
     @Bean
     public ConsumerFactory<String, Notification> consumerFactory() {
         Map<String, Object> props = new HashMap<>();
@@ -49,5 +49,5 @@ public class KafkaConsumerConfig {
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         return factory;
-    }
+    }*/
 }

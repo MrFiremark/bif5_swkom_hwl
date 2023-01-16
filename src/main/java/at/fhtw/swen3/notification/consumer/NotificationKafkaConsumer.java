@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class NotificationKafkaConsumer {
-
+    /*
     @KafkaListener(topics = "topicName", containerFactory = "kafkaListenerContainerFactory")
     public void listenGroupFoo(Notification message) {
         System.out.println("Received Message: " + message.getParcel().getTrackingId());
-    }
+    }*/
 }

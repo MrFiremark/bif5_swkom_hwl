@@ -1,7 +1,9 @@
 package at.fhtw.swen3.services.impl;
 
 import at.fhtw.swen3.gps.service.GeoEncodingService;
+import at.fhtw.swen3.notification.model.Notification;
 import at.fhtw.swen3.notification.producer.NotificationProducerController;
+import at.fhtw.swen3.notification.service.NotificationService;
 import at.fhtw.swen3.persistence.entities.GeoCoordinateEntity;
 import at.fhtw.swen3.persistence.entities.HopArrivalEntity;
 import at.fhtw.swen3.persistence.entities.ParcelEntity;
@@ -41,8 +43,13 @@ public class ParcelServiceImpl implements ParcelService {
     private final ValidatorUtil validatorUtil;
     @Autowired
     private final GeoEncodingService geoEncodingService;
+
+    @Autowired
+    private final NotificationService notificationService;
+    /*
     @Autowired
     private final NotificationProducerController notificationProducerController;
+     */
 
     @Override
     public String submitParcel(Parcel parcelDto) throws ConstraintViolationException, IOException, InterruptedException {
@@ -57,7 +64,7 @@ public class ParcelServiceImpl implements ParcelService {
         parcelEntity.setFutureHops(new ArrayList<HopArrivalEntity>());
         validatorUtil.validate(parcelEntity);
         parcelRepository.save(parcelEntity);
-        notificationProducerController.parcelNotification(parcelEntity);
+        sendNotification(parcelEntity);
         log.info("New Parcel created!");
         return parcelEntity.getTrackingId();
     }
@@ -78,7 +85,7 @@ public class ParcelServiceImpl implements ParcelService {
         parcelEntity.setFutureHops(new ArrayList<HopArrivalEntity>());
         validatorUtil.validate(parcelEntity);
         parcelRepository.save(parcelEntity);
-        notificationProducerController.parcelNotification(parcelEntity);
+        sendNotification(parcelEntity);
         log.info("Parcel transfer!");
         return parcelEntity.getTrackingId();
     }
@@ -89,11 +96,9 @@ public class ParcelServiceImpl implements ParcelService {
         if(parcelEntity == null){
             throw new PersistenceException();
         }
-
         parcelEntity.setState(StateEnum.DELIVERED);
-
         parcelRepository.save(parcelEntity);
-        notificationProducerController.parcelNotification(parcelEntity);
+        sendNotification(parcelEntity);
         log.info("Parcel delivered!");
     }
 
@@ -104,7 +109,6 @@ public class ParcelServiceImpl implements ParcelService {
             throw new PersistenceException();
         }
         ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode json = objectMapper.valueToTree(parcelEntity);
         ArrayNode visitedHopsNode = objectMapper.valueToTree(parcelEntity.getVisitedHops());
         ArrayNode futureHopsNode = objectMapper.valueToTree(parcelEntity.getFutureHops());
         ObjectNode newJson = objectMapper.createObjectNode();
@@ -114,5 +118,11 @@ public class ParcelServiceImpl implements ParcelService {
         return objectMapper.writeValueAsString(newJson);
     }
 
-
+    private void sendNotification(ParcelEntity parcelEntity){
+        Notification notification = Notification.builder()
+                .id(parcelEntity.getTrackingId())
+                .parcel(parcelEntity)
+                .build();
+        notificationService.sendPushNotification(notification);
+    }
 }
